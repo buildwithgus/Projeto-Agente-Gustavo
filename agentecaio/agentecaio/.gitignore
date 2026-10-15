@@ -1,0 +1,12 @@
+.env
+.env.*
+!.env.example
+credenciais.json
+data/*.sqlite3
+data/*.sqlite3-shm
+data/*.sqlite3-wal
+__pycache__/
+*.pyc
+.venv/
+venv/
+*.log

@@ -1,0 +1,149 @@
+/* TEMA AZUL E BRANCO. Ajuste as cores no bloco :root (cores oficiais da Metodista: [PREENCHER]) */
+:root{
+  --azul-950:#020b17; --azul-900:#0a1d35; --azul-700:#12489a; --azul-500:#1d6fe0; --azul-100:#dfeefb; --azul-50:#eff7ff;
+  --ciano-400:#7ee7ff; --ciano-500:#62d7ff; --branco:#fff; --texto:#eaf6ff; --suave:#9dc6ea; --borda:rgba(132,190,255,.23);
+  --alerta:#f5a15d; --sombra:0 16px 46px rgba(8,19,35,.52);
+}
+*{box-sizing:border-box}
+html,body{width:100%;height:100%;min-width:0;min-height:0}
+body{margin:0;font-family:"Segoe UI",system-ui,-apple-system,sans-serif;color:var(--texto);line-height:1.55;
+  background:
+    radial-gradient(circle at top, rgba(80,148,255,.18), transparent 28%),
+    linear-gradient(180deg, #040d1b 0%, #061521 32%, #091d30 100%) no-repeat,
+    #061521}
+  body.chat-page{display:flex;flex-direction:column;height:100vh;height:100dvh;overflow:hidden}
+:focus-visible{outline:3px solid var(--ciano-500);outline-offset:2px}
+
+/* Cabeçalho */
+header{background:linear-gradient(180deg, rgba(8,18,30,.94), rgba(6,16,29,.9));border-bottom:1px solid var(--borda);padding:12px 22px;display:grid;grid-template-columns:minmax(0,1fr) auto minmax(0,1fr);align-items:center;gap:12px;box-shadow:0 10px 28px rgba(2, 10, 17, 0.48), inset 0 1px 0 rgba(126,231,255,.06);min-height:108px;flex:none}
+@media(min-width:701px){header{padding:6px 22px}}
+.brand-uni{display:flex;align-items:center;justify-content:flex-start;min-width:0;height:100%}
+.brand-logo{height:94px;width:300px;max-width:100%;max-height:100%;object-fit:contain;filter:drop-shadow(0 0 12px rgba(126,231,255,.16));flex-shrink:0;border-radius:0;background:transparent;padding:0;border:none;opacity:1;margin-right:8px}
+.caio-brand{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:12px;width:max-content;max-width:100%;min-width:0;padding:0;border:none;border-radius:0;background:none;box-shadow:none;justify-self:center}
+.caio-line{display:flex;align-items:center;justify-content:center;gap:18px}
+.caio-avatar{width:82px;height:82px;border-radius:50%;object-fit:cover;border:1px solid rgba(126,231,255,.35);background:rgba(16,31,52,.9);box-shadow:0 0 20px rgba(98,215,255,.18);flex-shrink:0}
+header h1{margin:0;font-family:"Iceberg",sans-serif;font-size:2rem;color:var(--texto);letter-spacing:-.01em;line-height:1;text-align:center}
+.caio-acronym{display:block;width:100%;font-family:"Iceberg",sans-serif;font-size:.75rem;letter-spacing:.12em;line-height:1;text-transform:uppercase;color:var(--suave);white-space:nowrap;text-align:center}
+header nav{justify-self:end;display:flex;align-items:center;justify-content:center}
+header nav a{color:var(--ciano-500);text-decoration:none;font-size:.9rem;font-weight:600;border:1px solid var(--borda);padding:8px 14px;border-radius:10px;background:rgba(10, 24, 38, .7);box-shadow:0 0 0 1px rgba(126,231,255,.05), inset 0 1px 0 rgba(255,255,255,.05)}
+header nav a:hover{background:rgba(31, 83, 134, .8)}
+.title-wrap{display:flex;flex-direction:column;min-width:0}
+
+/* Chat */
+main.app-shell{width:100%;max-width:1280px;min-width:0;min-height:0;flex:1;margin:0 auto;padding:18px;display:grid;grid-template-columns:minmax(250px, min(34vw, 420px)) minmax(0, 1fr);grid-template-rows:minmax(0, 1fr) auto;gap:14px 18px;align-items:stretch}
+
+.brain-panel,
+.cartao-chat{background:rgba(9, 22, 39, 0.86);border:1px solid var(--borda);border-radius:22px;box-shadow:var(--sombra);backdrop-filter:blur(6px)}
+
+.brain-panel{display:flex;flex-direction:column;min-width:0;min-height:0;padding:18px;position:relative;overflow:hidden}
+.brain-panel::before{content:"";position:absolute;inset:0;background:radial-gradient(circle at 50% 35%, rgba(126,231,255,.18), transparent 42%);pointer-events:none}
+.brain-header{display:flex;align-items:center;gap:10px;position:relative;z-index:1}
+.brain-status-dot{display:inline-block;width:10px;height:10px;border-radius:50%;background:var(--ciano-500);box-shadow:0 0 18px rgba(126,231,255,.9)}
+.brain-status-label{font-family:"Iceberg",sans-serif;font-size:.75rem;letter-spacing:.16em;font-weight:700;color:var(--ciano-500);text-transform:uppercase}
+.brain-viewport{position:relative;flex:1;min-width:0;min-height:0;z-index:1;border-radius:18px;background:
+  radial-gradient(circle at center, rgba(19,48,77,.88), rgba(5,13,25,.95) 52%, rgba(2,11,18,1) 100%);
+  overflow:hidden;border:1px solid rgba(126,231,255,.18);display:flex;align-items:center;justify-content:center;box-shadow:inset 0 0 28px rgba(96,210,255,.1), inset 0 0 60px rgba(21,61,95,.4)}
+.brain-viewport::before{content:"";position:absolute;inset:0;background:
+  linear-gradient(transparent 0%, rgba(118,228,255,.08) 32%, rgba(118,228,255,.12) 50%, rgba(118,228,255,.04) 100%),
+  repeating-linear-gradient(0deg, rgba(126,231,255,.06), rgba(126,231,255,.06) 1px, transparent 1px, transparent 4px);
+  mix-blend-mode:screen;pointer-events:none;z-index:2}
+.brain-viewport::after{content:"";position:absolute;inset:9% 14%;border-radius:50%;background:radial-gradient(circle, rgba(126,231,255,.2), transparent 60%);filter:blur(18px);pointer-events:none;z-index:0}
+.brain-video{display:block;position:relative;z-index:1;width:100%;height:100%;min-width:0;min-height:0;object-fit:contain;object-position:center;}
+.brain-gif{display:none}
+.brain-meta{display:flex;justify-content:space-between;gap:8px;flex-wrap:wrap;position:relative;z-index:1;padding-top:12px}
+.meta-pill{display:inline-flex;align-items:center;padding:8px 12px;border-radius:999px;border:1px solid rgba(126,231,255,.35);background:rgba(8,25,42,.8);color:var(--ciano-500);font-family:"Iceberg",sans-serif;font-size:.75rem;font-weight:700;letter-spacing:.06em;text-transform:uppercase}
+.meta-pill-muted{color:var(--suave);letter-spacing:.04em}
+.brain-fallback{display:grid;place-items:center}
+.brain-fallback-mark{font-size:2rem;font-weight:800;letter-spacing:.25em;color:var(--ciano-500);text-shadow:0 0 18px rgba(126,231,255,.75)}
+
+.cartao-chat{min-width:0;min-height:0;display:flex;flex-direction:column;overflow:hidden}
+.chips{display:flex;flex-wrap:wrap;gap:8px;padding:12px 14px;background:rgba(11, 25, 39, .72);border-bottom:1px solid var(--borda);overflow:hidden;flex:none}
+.chips button{flex:none;background:rgba(18, 38, 60, .9);border:1px solid rgba(126,231,255,.2);color:var(--texto);border-radius:999px;padding:7px 15px;cursor:pointer;font-size:.88rem;font-weight:600;font-family:"Iceberg",sans-serif;transition:background .15s,color .15s}
+.chips button:hover{background:rgba(47,124,220,.9);color:#fff;border-color:rgba(126,231,255,.4)}
+#chat{flex:1;min-width:0;min-height:0;overflow-x:hidden;overflow-y:auto;overscroll-behavior:contain;display:flex;flex-direction:column;gap:12px;padding:20px 18px;background:rgba(7, 17, 29, .72)}
+.msg-row{display:flex;align-items:flex-end;gap:10px;max-width:90%}
+.msg-row.user{margin-left:auto;justify-content:flex-end}
+.msg-row.bot{margin-right:auto;justify-content:flex-start}
+.msg{display:inline-block;width:fit-content;max-width:78%;padding:11px 15px;border-radius:16px;white-space:normal;overflow-wrap:break-word;word-break:break-word;line-height:1.6;box-shadow:0 6px 18px rgba(5, 14, 24, .22)}
+.msg p{margin:0}
+.msg p+p{margin-top:.7em}
+.msg h2,.msg h3,.msg h4{margin:0 0 .55em;line-height:1.3;color:var(--ciano-500)}
+.msg h2:not(:first-child),.msg h3:not(:first-child),.msg h4:not(:first-child){margin-top:.9em}
+.msg ul,.msg ol{margin:.25em 0 .75em;padding-left:1.45em}
+.msg li+li{margin-top:.35em}
+.msg li:last-child{margin-bottom:0}
+.msg strong{color:#fff;font-weight:700}
+.msg code{padding:.08em .3em;border-radius:4px;background:rgba(2,11,23,.55);color:var(--ciano-400);font-family:Consolas,monospace;font-size:.92em}
+.msg-row.user .msg{align-self:flex-end;background:linear-gradient(135deg,#1b5de1,#0d3e8e);color:#fff;border-bottom-right-radius:5px}
+.msg-row.bot .msg{align-self:flex-start;background:rgba(18, 39, 64, .9);color:var(--texto);border:1px solid rgba(126,231,255,.18);border-bottom-left-radius:5px}
+.msg-row.bot .msg.pendente{background:rgba(52, 32, 18, .8);border-left:4px solid var(--alerta)}
+.msg small{display:block;margin-top:6px;color:var(--alerta);font-weight:600}
+.bot-avatar{width:34px;height:34px;border-radius:50%;object-fit:cover;border:1px solid rgba(126,231,255,.35);background:rgba(16,31,52,.9);box-shadow:0 0 15px rgba(98,215,255,.12);flex-shrink:0}
+form{display:flex;flex:none;min-width:0;gap:10px;padding:12px 14px;border-top:1px solid var(--borda);background:rgba(8, 21, 32, .76)}
+input[type=text],input[type=password],select{flex:1;min-width:0;padding:12px 16px;border:1px solid rgba(126,231,255,.25);border-radius:12px;font-size:1rem;font-family:inherit;background:rgba(17, 32, 53, .9);color:var(--texto)}
+input:focus{background:rgba(16, 27, 43, 1);border-color:var(--ciano-500)}
+button.enviar,.btn{background:linear-gradient(135deg,#2a7ef7,#123f90);color:#fff;border:0;border-radius:12px;padding:0 22px;font-size:1rem;font-weight:600;font-family:"Iceberg",sans-serif;cursor:pointer;min-height:46px;transition:background .15s, transform .15s}
+button.enviar:hover,.btn:hover{background:linear-gradient(135deg,#3b96ff,#255bd5)}
+button:disabled{opacity:.6;cursor:wait}
+.aviso{font-size:.8rem;color:var(--suave);text-align:center;margin:0 auto;max-width:720px;padding:0 8px 2px}
+main.app-shell>.aviso{grid-column:1/-1}
+
+/* Painel do representante */
+.painel{max-width:1000px;margin:22px auto;padding:0 16px;display:grid;gap:16px;grid-template-columns:repeat(auto-fit,minmax(290px,1fr))}
+.painel .topo{grid-column:1/-1;display:flex;gap:10px;background:var(--branco);border:1px solid var(--borda);border-radius:14px;padding:12px;box-shadow:var(--sombra)}
+.card{background:var(--branco);border:1px solid var(--borda);border-radius:14px;padding:18px;box-shadow:0 2px 12px rgba(18,72,154,.06)}
+.card h2{margin:0 0 12px;font-size:.98rem;color:var(--azul-900)}
+.numero{font-size:2.6rem;font-weight:700;color:var(--azul-700);line-height:1}
+.barra{display:grid;grid-template-columns:1fr auto;gap:3px 10px;margin-bottom:10px;font-size:.9rem}
+.barra b{color:var(--azul-700)}
+.barra i{grid-column:1/-1;height:8px;background:var(--azul-500);border-radius:4px;display:block}
+.largo{grid-column:1/-1}
+ul{padding-left:18px;margin:0}
+li{margin-bottom:8px}
+li small{color:var(--suave)}
+
+@media(max-width:760px){
+  main.app-shell{max-width:600px;padding:12px;grid-template-columns:minmax(0,1fr);grid-template-rows:minmax(110px, 27%) minmax(0,1fr) auto;gap:10px}
+  .brain-panel{padding:10px;display:grid;grid-template-columns:minmax(0,1fr) auto;grid-template-rows:auto minmax(0,1fr);gap:4px 10px}
+  .brain-header{grid-column:1/-1}
+  .brain-viewport{grid-column:1;grid-row:2;border-radius:12px}
+  .brain-meta{grid-column:2;grid-row:2;align-content:center;flex-direction:column;justify-content:center;padding:0}
+  .meta-pill{font-size:.65rem;padding:6px 8px}
+  .cartao-chat{grid-row:2}
+}
+@media(max-width:700px){
+  header{grid-template-columns:minmax(0,1fr) auto;grid-template-areas:"uni nav" "caio caio";row-gap:8px}
+  .brand-uni{grid-area:uni}
+  .caio-brand{grid-area:caio;justify-self:center}
+  header nav{grid-area:nav}
+  .brand-logo{height:62px;width:180px}
+  .caio-avatar{width:54px;height:54px}
+  header h1{font-size:1.5rem}
+  .caio-acronym{font-size:.64rem;letter-spacing:.08em}
+}
+@media(max-width:600px){
+  header{padding:10px 14px;min-height:82px;grid-template-columns:minmax(0,1fr) auto minmax(0,1fr)}
+  .brand-logo{height:62px;width:180px}
+  .caio-avatar{width:54px;height:54px}
+  header h1{font-size:1.5rem}
+  .caio-brand{gap:10px}
+  .caio-acronym{max-width:100%;white-space:normal;line-height:1.2;letter-spacing:.08em;font-size:.64rem}
+  header p{display:none}
+  .msg{max-width:92%}
+  .brain-panel{padding:8px}
+  .cartao-chat{border-radius:16px}
+  .chips{gap:6px;padding:8px}
+  .chips button{font-size:.76rem;padding:6px 10px}
+  #chat{padding:14px 10px}
+  form{gap:7px;padding:8px}
+  button.enviar{padding:0 13px}
+  .painel .topo{flex-direction:column}
+}
+@media(max-height:560px) and (max-width:760px){
+  main.app-shell{grid-template-rows:minmax(82px, 21%) minmax(0,1fr) auto}
+  .brain-header{gap:6px}
+  .brain-status-label{font-size:.65rem}
+  .brain-panel{padding:6px}
+  .meta-pill{padding:4px 6px;font-size:.58rem}
+}
+@media(prefers-reduced-motion:no-preference){.msg{animation:surge .18s ease-out}@keyframes surge{from{opacity:0;transform:translateY(4px)}to{opacity:1;transform:none}}}

@@ -1,0 +1,138 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>CAIO | Área do Representante</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Iceberg&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/static/style.css">
+  <link rel="stylesheet" href="/static/admin.css?v=2">
+</head>
+<body class="admin-page">
+  <header class="admin-topbar">
+    <div class="brand-uni">
+      <img class="brand-logo brand-logo-umesp" src="/static/Log%C3%B3tipo%20Universidade%20Metodista%20Branco%20e%20Amarelo.png" alt="Logotipo da Universidade Metodista" onerror="this.style.display='none'">
+    </div>
+    <div class="caio-brand">
+      <div class="caio-line">
+        <img class="caio-avatar" src="/static/avatar%20caio.png" alt="Avatar C.A.I.O" onerror="this.style.display='none'">
+        <h1>C.A.I.O</h1>
+      </div>
+      <span class="caio-acronym">Central Acadêmica Inteligente Online</span>
+    </div>
+    <nav class="admin-nav" aria-label="Navegação administrativa">
+      <a href="/">Voltar ao chat</a>
+      <button id="logout" type="button" hidden>Sair</button>
+    </nav>
+  </header>
+
+  <main class="admin-main">
+    <section id="admin-login" class="admin-login" aria-labelledby="login-title" hidden>
+      <h2 id="login-title">Acesso administrativo</h2>
+      <p class="admin-subtle">Entre com a credencial do representante. A sessão é protegida pelo servidor.</p>
+      <form id="login-form">
+        <label for="login-token">Credencial</label>
+        <input id="login-token" type="password" autocomplete="current-password" required>
+        <button class="admin-button primary" type="submit">Entrar</button>
+      </form>
+      <p id="login-message" class="admin-message" role="status" aria-live="polite"></p>
+    </section>
+
+    <section id="admin-app" class="admin-app" hidden>
+      <p id="admin-message" class="admin-message" role="status" aria-live="polite"></p>
+      <div id="admin-stats" class="admin-stats" aria-label="Resumo dos registros"></div>
+      <nav class="admin-tabs" aria-label="Seções do painel">
+        <button class="admin-tab" type="button" data-view="overview" aria-selected="true">Visão geral</button>
+        <button class="admin-tab" type="button" data-view="records" aria-selected="false">Registros</button>
+      </nav>
+
+      <section id="view-overview" class="admin-view" aria-labelledby="overview-title">
+        <div class="admin-heading-row">
+          <div><h2 id="overview-title">Visão geral</h2><p class="admin-subtle">Revisão e publicação controladas pelo representante.</p></div>
+          <button id="new-record-overview" class="admin-button primary" type="button">Novo registro</button>
+        </div>
+        <h3>Atividade recente</h3>
+        <div id="recent-records" class="admin-list"></div>
+        <p id="source-note" class="admin-source-note"></p>
+      </section>
+
+      <section id="view-records" class="admin-view" aria-labelledby="records-title" hidden>
+        <div class="admin-heading-row">
+          <div><h2 id="records-title">Registros acadêmicos</h2><p class="admin-subtle">Pesquise, filtre, revise e acompanhe versões.</p></div>
+          <button id="new-record" class="admin-button primary" type="button">Novo registro</button>
+        </div>
+        <form id="filter-form" class="admin-filter-form">
+          <label>Texto no título ou conteúdo<input name="q" type="search" placeholder="Pesquisar"></label>
+          <label>Categoria<input name="category" list="category-options" placeholder="Todas"></label>
+          <label>Disciplina<input name="discipline" list="discipline-options" placeholder="Todas"></label>
+          <label>Status<select name="status"><option value="">Todos</option><option value="rascunho">Rascunho</option><option value="em_revisao">Em revisão</option><option value="oficial">Oficial</option><option value="arquivada">Arquivada</option><option value="retirada">Retirada</option></select></label>
+          <label>Professor ou responsável<input name="professor" placeholder="Todos"></label>
+          <label>Publicação a partir de<input name="publication_from" type="date"></label>
+          <label>Publicação até<input name="publication_to" type="date"></label>
+          <label>Evento ou prazo a partir de<input name="event_from" type="date"></label>
+          <label>Evento ou prazo até<input name="event_to" type="date"></label>
+          <label>Ordenar por<select name="sort"><option value="updated_at">Atualização</option><option value="event_date">Data do evento</option><option value="publication_date">Publicação</option><option value="title">Título</option><option value="category">Categoria</option><option value="status">Status</option></select></label>
+          <label>Ordem<select name="direction"><option value="desc">Mais recentes primeiro</option><option value="asc">Mais antigos primeiro</option></select></label>
+          <div class="admin-filter-actions"><button class="admin-button primary" type="submit">Filtrar</button><button id="clear-filters" class="admin-button quiet" type="button">Limpar filtros</button></div>
+        </form>
+        <datalist id="category-options"></datalist>
+        <datalist id="discipline-options"></datalist>
+        <div class="admin-list-head"><strong id="record-count">0 registros</strong></div>
+        <div id="record-list" class="admin-list"></div>
+        <div class="admin-pagination"><button id="previous-page" class="admin-button quiet" type="button" disabled>Anterior</button><button id="next-page" class="admin-button quiet" type="button" disabled>Próxima</button></div>
+      </section>
+    </section>
+  </main>
+
+  <dialog id="record-dialog" class="admin-dialog" aria-labelledby="record-modal-title">
+    <div class="admin-dialog-shell">
+      <div class="admin-dialog-head"><div><h2 id="record-modal-title">Novo registro</h2><span id="record-status-label" class="admin-subtle"></span></div><button class="admin-button quiet" type="button" data-close="record-dialog" aria-label="Cancelar alterações">Cancelar</button></div>
+      <form id="record-form" class="admin-dialog-body">
+        <div class="admin-form-grid">
+          <label>Título<input id="field-title" name="title" required maxlength="200"></label>
+          <label>Categoria<input id="field-category" name="category" list="category-options" required maxlength="100" placeholder="Selecione ou digite uma categoria"></label>
+          <label>Disciplina<input id="field-discipline" name="discipline" list="discipline-options"></label>
+          <label>Professor ou responsável<input id="field-professor" name="professor"></label>
+          <label class="wide">Descrição ou conteúdo completo<textarea id="field-description" name="description"></textarea></label>
+          <label>Data de publicação<input id="field-publication_date" name="publication_date" type="date"></label>
+          <label data-category-field="prova,trabalho,aula,calendario,esta semana">Data do evento, aula, prova ou entrega<input id="field-event_date" name="event_date" type="date"></label>
+          <label data-category-field="calendario,evento">Data final<input id="field-event_end_date" name="event_end_date" type="date"></label>
+          <label data-category-field="prova,trabalho,aula">Horário inicial<input id="field-start_time" name="start_time" type="time"></label>
+          <label data-category-field="prova,trabalho,aula">Horário final<input id="field-end_time" name="end_time" type="time"></label>
+          <label data-category-field="extensao,trabalho">Prazo de inscrição ou entrega<input id="field-deadline" name="deadline" type="date"></label>
+          <label data-category-field="prova,aula">Local<input id="field-location" name="location"></label>
+          <label data-category-field="prova,aula,extensao">Modalidade<input id="field-modality" name="modality" placeholder="Presencial, online…"></label>
+          <label data-category-field="extensao">Instituição<input id="field-institution" name="institution"></label>
+          <label data-category-field="extensao">Carga horária<input id="field-workload" name="workload"></label>
+          <label class="wide" data-category-field="extensao,trabalho">Requisitos<textarea id="field-requirements" name="requirements"></textarea></label>
+          <label data-category-field="extensao,trabalho,resumo">Link ou material de referência<input id="field-reference_link" name="reference_link" type="url"></label>
+          <label data-category-field="prova">Nota máxima<input id="field-grade" name="grade"></label>
+          <label class="wide">Observações<textarea id="field-notes" name="notes"></textarea></label>
+          <label class="wide">Motivo da correção (opcional)<input id="field-reason" name="reason" maxlength="1000"></label>
+        </div>
+      </form>
+      <div class="admin-form-actions"><button id="record-publish" class="admin-button primary" type="button" hidden>Publicar atualização</button><button id="send-review" class="admin-button" type="button">Enviar para revisão</button><button id="save-draft" class="admin-button quiet" type="button">Salvar rascunho</button></div>
+    </div>
+  </dialog>
+
+  <dialog id="publish-dialog" class="admin-dialog" aria-labelledby="publish-title">
+    <div class="admin-dialog-shell">
+      <div class="admin-dialog-head"><div><h2 id="publish-title">Prévia de publicação</h2><p class="admin-subtle">Confira o conteúdo antes de liberá-lo aos alunos.</p></div><button class="admin-button quiet" type="button" data-close="publish-dialog">Fechar</button></div>
+      <div class="admin-dialog-body"><div id="publish-preview" class="admin-preview"></div></div>
+      <div class="admin-form-actions"><button class="admin-button quiet" type="button" data-close="publish-dialog">Voltar</button><button id="publish-confirm" class="admin-button primary" type="button">Confirmar como oficial</button></div>
+    </div>
+  </dialog>
+
+  <dialog id="details-dialog" class="admin-dialog" aria-labelledby="details-title">
+    <div class="admin-dialog-shell"><div class="admin-dialog-head"><h2 id="details-title">Detalhes do registro</h2><button class="admin-button quiet" type="button" data-close="details-dialog">Fechar</button></div><div id="details-content" class="admin-dialog-body admin-preview"></div></div>
+  </dialog>
+
+  <dialog id="history-dialog" class="admin-dialog" aria-labelledby="history-title">
+    <div class="admin-dialog-shell"><div class="admin-dialog-head"><h2 id="history-title">Histórico de alterações</h2><button class="admin-button quiet" type="button" data-close="history-dialog">Fechar</button></div><div id="history-list" class="admin-dialog-body admin-history-list"></div></div>
+  </dialog>
+  <script src="/static/admin.js?v=2"></script>
+  <script>document.querySelectorAll('[data-close]').forEach(button => button.addEventListener('click', () => document.getElementById(button.dataset.close).close()));</script>
+</body>
+</html>

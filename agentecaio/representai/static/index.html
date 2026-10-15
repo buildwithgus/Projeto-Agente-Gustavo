@@ -1,0 +1,47 @@
+<!doctype html>
+<html lang="pt-BR"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>C.A.I.O — Central Acadêmica Inteligente Online</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Iceberg&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/static/style.css?v=markdown-1"></head>
+<body class="chat-page">
+<header class="topbar">
+  <div class="brand-uni">
+    <img class="brand-logo brand-logo-umesp" src="/static/Log%C3%B3tipo%20Universidade%20Metodista%20Branco%20e%20Amarelo.png" alt="Logotipo da Universidade Metodista" onerror="this.style.display='none'">
+  </div>
+  <div class="caio-brand">
+    <div class="caio-line">
+      <img class="caio-avatar" src="/static/avatar%20caio.png" alt="Avatar C.A.I.O" onerror="this.style.display='none'">
+      <h1>C.A.I.O</h1>
+    </div>
+    <span class="caio-acronym">Central Acadêmica Inteligente Online</span>
+  </div>
+  <nav><a href="/representante">Área do Representante</a></nav>
+</header>
+<main class="app-shell">
+  <section class="brain-panel" aria-label="Visualização do cérebro elétrico do assistente">
+    <div class="brain-header">
+      <span class="brain-status-dot" id="brain-status-dot"></span>
+      <span class="brain-status-label" id="brain-status-label">IDLE</span>
+    </div>
+    <div id="brain-viewport" class="brain-viewport">
+      <video class="brain-video" autoplay loop muted playsinline preload="auto" aria-label="Núcleo neural do C.A.I.O">
+        <source src="/static/interface%20neural.mp4" type="video/mp4">
+      </video>
+    </div>
+    <div class="brain-meta">
+      <span class="meta-pill">C.A.I.O</span>
+      <span class="meta-pill meta-pill-muted" id="brain-state-caption">Aguardando interação</span>
+    </div>
+  </section>
+
+  <section class="cartao-chat">
+    <div class="chips" id="chips"></div>
+    <div id="chat" aria-live="polite"></div>
+    <form id="form"><input type="text" id="q" maxlength="500" autocomplete="off" placeholder="Escreva sua dúvida. Ex.: o que tenho para entregar?" aria-label="Sua dúvida" required><button class="enviar" id="ok">Perguntar</button></form>
+  </section>
+  <p class="aviso">Informações cadastradas pelo representante. Não substitui professores, coordenação ou canais oficiais da Metodista.</p>
+</main>
+<script src="/static/app.js?v=markdown-3"></script>
+</body></html>
